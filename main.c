@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:21:43 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/05 13:43:16 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/05 15:07:28 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int main(int argc, char **argv)
 		free_end(args);
 		return (0);
 	}
-	check_args(argc, argv, args);
+	if (check_args(argc, argv, args) == 1)
+		return (1);
+	printf("OK!\n");
 	free_end(args);
 	return (0);
 }
