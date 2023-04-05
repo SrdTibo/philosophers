@@ -1,6 +1,6 @@
 NAME = philosophers
 CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g -pthread
-SRC	= 	args.c \
+SRC	= 	check_args.c main.c utils.c\
 
 OBJ	= $(SRC:.c=.o)
 

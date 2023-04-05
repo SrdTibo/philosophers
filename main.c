@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/05 13:42:19 by tserdet          ###   ########.fr       */
+/*   Created: 2023/04/05 13:21:43 by tserdet           #+#    #+#             */
+/*   Updated: 2023/04/05 13:43:16 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <pthread.h>
-typedef struct s_args
+#include "philosophers.h"
+
+int main(int argc, char **argv)
 {
-	int nmb_philos;
-	int	ttd;
-	int tte;
-	int tts;
-	int nmb_of_eat;
-}					t_args;
-int	check_args(int argc, char **argv, t_args *args);
-int free_end(t_args *args);
-#endif
+	t_args	*args;
+
+	args = malloc(sizeof(t_args));
+	if (!args)
+	{
+		free_end(args);
+		return (0);
+	}
+	check_args(argc, argv, args);
+	free_end(args);
+	return (0);
+}

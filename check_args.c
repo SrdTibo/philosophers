@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/05 13:42:19 by tserdet          ###   ########.fr       */
+/*   Created: 2023/04/05 13:15:50 by tserdet           #+#    #+#             */
+/*   Updated: 2023/04/05 13:42:09 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <sys/time.h>
-# include <pthread.h>
-typedef struct s_args
+#include "philosophers.h"
+
+int	check_args(int argc, char **argv, t_args *args)
 {
-	int nmb_philos;
-	int	ttd;
-	int tte;
-	int tts;
-	int nmb_of_eat;
-}					t_args;
-int	check_args(int argc, char **argv, t_args *args);
-int free_end(t_args *args);
-#endif
+	(void) argv;
+	if (argc == 5)
+		args->nmb_of_eat = 0;
+	printf("%d", args->nmb_of_eat);
+	return (0);
+}
