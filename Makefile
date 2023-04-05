@@ -1,20 +1,25 @@
-NAME = philosophers
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g -pthread
-SRC	= 	check_args.c main.c utils.c\
+NAME = philosopher
 
-OBJ	= $(SRC:.c=.o)
+src = check_args.c main.c utils.c
 
-all : 		$(NAME)
+obj = $(src:.c=.o)
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+hd = philosophers.h
 
-clean :
-	rm -rf $(OBJ)
+flags = -Wall -Wextra -Werror
 
-fclean :	clean
-	rm -f $(NAME)
+cc = cc
 
-re :		fclean all
+all: $(NAME)
 
-.PHONY :	all clean fclean re
+$(NAME): $(src) $(obj) $(hd)
+	$(cc) $(flags) $(src) -o $(NAME)
+
+%.o : %.c
+	$(cc) $(flags) -c $< -o $@
+
+clean:
+	rm -rf $(obj) $(obj_b)
+
+fclean: clean
+	rm -rf $(NAME) $(NAME_BONUS)

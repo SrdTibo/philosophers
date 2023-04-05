@@ -6,12 +6,12 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/05 13:42:19 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/05 14:22:15 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
