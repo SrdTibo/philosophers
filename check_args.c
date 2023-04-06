@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:15:50 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/05 15:03:55 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/06 14:35:34 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int only_int(int argc, char **argv)
 	{
 		while (argv[i][j] != '\0')
 		{
-			if (argv[i][j] > '9' && argv[i][j] < '0')
+			if (argv[i][j] > '9' || argv[i][j] < '0')
 				return (1);
 			j++;
 		}

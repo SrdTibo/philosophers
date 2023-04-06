@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/05 14:34:35 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/06 15:38:21 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ typedef struct s_args
 	int tts;
 	int nmb_of_eat;
 }					t_args;
+typedef struct s_threads
+{
+
+}					t_threads;
 int	check_args(int argc, char **argv, t_args *args);
 int free_end(t_args *args);
 int	ft_atoi(const char *thestring);

@@ -1,4 +1,4 @@
-NAME = philosopher
+NAME = philosophers
 
 src = check_args.c main.c utils.c
 
@@ -23,3 +23,7 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME) $(NAME_BONUS)
+
+re :		fclean all
+
+.PHONY :	all clean fclean re
