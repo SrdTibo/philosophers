@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/12 12:58:48 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/12 13:27:55 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@
 # include <pthread.h>
 typedef struct s_args
 {
-	int nmb_philos;
-	int	ttd;
-	int tte;
-	int tts;
-	int nmb_of_eat;
-	pthread_mutex_t    *write;
+	int 				nmb_philos;
+	int					ttd;
+	int 				tte;
+	int 				tts;
+	int 				nmb_of_eat;
+	pthread_mutex_t    	*write;
 }					t_args;
 
 typedef struct s_philos
 {
-	int	id;
-	int	nb_eat;
-	int begin;
-	pthread_mutex_t    f_c;
-	pthread_mutex_t    *f_l;
+	int					id;
+	int					nb_eat;
+	int 				begin;
+	pthread_mutex_t    	f_c;
+	pthread_mutex_t    	*f_l;
 }					t_philos;
 int	check_args(int argc, char **argv, t_args *args);
 void free_end(t_args *args, t_philos *philos);
