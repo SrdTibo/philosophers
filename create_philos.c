@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   create_philos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 13:21:43 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/12 11:55:12 by tserdet          ###   ########.fr       */
+/*   Created: 2023/04/12 10:56:09 by tserdet           #+#    #+#             */
+/*   Updated: 2023/04/12 12:22:22 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int main(int argc, char **argv)
+int	create_philos(t_args *args, t_philos *philos)
 {
-	t_args		*args;
-	t_philos	*philos;
+	int	i;
 
-	philos = NULL;
-	args = malloc(sizeof(t_args));
-	if (!args)
+	i = 0;
+	philos = malloc(sizeof(t_philos) * args->nmb_philos);
+	if (!philos)
 	{
 		free_end(args, philos);
 		return (1);
 	}
-	if (check_args(argc, argv, args) == 1)
+	while (i < args->nmb_philos)
 	{
-		printf("\033[1;31mARGS ERROR!\n");
-		return (1);
+		philos[i].id = i;
+		philos[i].nb_eat = 0;
+		if (pthread_mutex_init(&philos[i].f_c, NULL) != 0)
+			return (1);
+		i++;
 	}
-	else
-		printf("\033[1;32mARGS OK!\n");
-	if (create_philos(args, philos) == 1)
-		return (1);
-	free_end(args, philos);
-	return (0);
+	return(0);
 }

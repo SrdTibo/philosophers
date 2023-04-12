@@ -6,16 +6,16 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:32:53 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/05 14:34:31 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/12 12:01:47 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int free_end(t_args *args)
+void free_end(t_args *args, t_philos *philos)
 {
+	free(philos);
 	free(args);
-	return (0);
 }
 
 int	ft_atoi(const char *thestring)
