@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:56:09 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/12 12:44:29 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/12 12:59:28 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	create_philos(t_args *args, t_philos *philos)
 		free_end(args, philos);
 		return (1);
 	}
+	pthread_mutex_init(args->write, NULL);
 	while (i < args->nmb_philos)
 	{
 		philos[i].id = i;

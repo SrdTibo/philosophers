@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/12 12:36:15 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/12 12:58:48 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_args
 	int tte;
 	int tts;
 	int nmb_of_eat;
+	pthread_mutex_t    *write;
 }					t_args;
 
 typedef struct s_philos
@@ -32,7 +33,6 @@ typedef struct s_philos
 	int	id;
 	int	nb_eat;
 	int begin;
-	pthread_mutex_t    *write;
 	pthread_mutex_t    f_c;
 	pthread_mutex_t    *f_l;
 }					t_philos;
