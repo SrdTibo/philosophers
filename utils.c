@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:32:53 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/13 13:41:17 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/13 14:30:01 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,10 @@ int	ft_atoi(const char *thestring)
 	if (!(thestring[i] >= 48 && thestring[i] <= 57) && valeur == 0)
 		return (0);
 	return (valeur);
+}
+
+int	get_chrono(t_gen *gen)
+{
+	gettimeofday(&gen->tv, NULL);
+	return (gen->tv.tv_usec - gen->begin);
 }

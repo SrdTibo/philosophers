@@ -1,6 +1,6 @@
 NAME = philosophers
 
-src = check_args.c main.c utils.c create_philos.c
+src = check_args.c main.c utils.c create_philos.c action.c
 
 obj = $(src:.c=.o)
 

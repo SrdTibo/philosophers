@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/13 13:42:50 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/13 14:27:54 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_args
 typedef struct s_gen
 {
 	pthread_mutex_t    	write;
+	int					begin;
+	struct timeval		tv;
 }					t_gen;
 typedef struct s_philos
 {
@@ -42,4 +44,6 @@ int	check_args(int argc, char **argv, t_args *args);
 void free_end(t_args *args, t_philos *philos, t_gen *gen);
 int	create_philos(t_args *args, t_philos *philos, t_gen *gen);
 int	ft_atoi(const char *thestring);
+void	thinking(int x, t_gen *gen);
+int	get_chrono(t_gen *gen);
 #endif
