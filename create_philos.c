@@ -6,13 +6,13 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:56:09 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/12 12:59:28 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/13 13:43:11 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	create_philos(t_args *args, t_philos *philos)
+int	create_philos(t_args *args, t_philos *philos, t_gen *gen)
 {
 	int	i;
 
@@ -20,10 +20,10 @@ int	create_philos(t_args *args, t_philos *philos)
 	philos = malloc(sizeof(t_philos) * args->nmb_philos);
 	if (!philos)
 	{
-		free_end(args, philos);
+		free_end(args, philos, gen);
 		return (1);
 	}
-	pthread_mutex_init(args->write, NULL);
+	pthread_mutex_init(&gen->write, NULL);
 	while (i < args->nmb_philos)
 	{
 		philos[i].id = i;
