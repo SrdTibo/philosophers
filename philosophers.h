@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/13 15:14:04 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/13 15:57:21 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_philos
 	int					id;
 	int					nb_eat;
 	int 				begin;
+	int					last_eat;
 	pthread_mutex_t    	f_c;
 	pthread_mutex_t    	*f_l;
 }					t_philos;
