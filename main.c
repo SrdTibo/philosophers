@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:21:43 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/12 11:55:12 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/13 13:26:46 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int main(int argc, char **argv)
 	}
 	if (check_args(argc, argv, args) == 1)
 	{
-		printf("\033[1;31mARGS ERROR!\n");
+		printf("\033[0;31mARGS ERROR!\033[0m\n");
 		return (1);
 	}
 	else
-		printf("\033[1;32mARGS OK!\n");
+		printf("\033[0;32mARGS OK!\033[0m\n");
 	if (create_philos(args, philos) == 1)
 		return (1);
 	free_end(args, philos);

@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:15:50 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/12 10:54:17 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/13 13:28:36 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	check_args(int argc, char **argv, t_args *args)
 {	
 	if (only_int(argc, argv) == 1)
 		return (1);
-	if (argc < 5 || argc > 6)
+	if (argc < 6 || argc > 7)
 		return (1);
-	if (argc == 5)
+	if (argc == 6)
 		args->nmb_of_eat = -1;
 	convert_args(argv, args);
 	return (0);
