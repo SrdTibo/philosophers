@@ -6,11 +6,20 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:21:43 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/14 14:34:52 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/14 15:18:58 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	launch(t_args *args, t_philos *philos, t_gen *gen)
+{
+	initialising_time(gen);
+	printf("%dms initialising\n", get_chrono(gen));
+	if (launch_threads(args, philos) == 1)
+		return (1);
+	return (0);
+}
 
 int main(int argc, char **argv)
 {
@@ -35,11 +44,11 @@ int main(int argc, char **argv)
 		printf("\033[0;32mARGS OK!\033[0m\n");
 	if (create_philos(args, philos, gen) == 1)
 		return (1);
-	initialising_time(gen);
-	printf("%dms initialising\n", get_chrono(gen));
-	is_eating(1, gen, args);
-	is_sleeping(1, gen, args);
-	is_thinking(1, gen);
+	if (launch(args, philos, gen) == 1)
+	{
+		free_end(args, philos, gen);
+		return (1);
+	}
 	free_end(args, philos, gen);
 	return (0);
 }

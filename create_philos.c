@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:56:09 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/13 15:57:49 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/14 15:18:26 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,9 @@ int	create_philos(t_args *args, t_philos *philos, t_gen *gen)
 		i++;
 	}
 	return(0);
+}
+
+int launch_threads(t_args *args, t_philos *philos)
+{
+	return (0);
 }
