@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/13 15:57:21 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/14 14:35:13 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ int	check_args(int argc, char **argv, t_args *args);
 void free_end(t_args *args, t_philos *philos, t_gen *gen);
 int	create_philos(t_args *args, t_philos *philos, t_gen *gen);
 int	ft_atoi(const char *thestring);
-void	thinking(int x, t_gen *gen);
+void	is_thinking(int x, t_gen *gen);
 int	get_chrono(t_gen *gen);
 void initialising_time(t_gen *gen);
 void	ft_usleep(long int time_in_ms, t_gen *gen);
+void	is_eating(int x, t_gen *gen, t_args *args);
+void	is_sleeping(int x, t_gen *gen, t_args *args);
 #endif

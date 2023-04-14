@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:32:53 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/13 15:07:43 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/14 14:30:06 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,3 @@ int	ft_atoi(const char *thestring)
 		return (0);
 	return (valeur);
 }
-
