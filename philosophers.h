@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/15 11:49:03 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/15 13:38:33 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ typedef struct s_philos
 }					t_philos;
 typedef struct s_all
 {
-	t_args		*args;
-	t_gen		*gen;
-	t_philos	*philos;
+	t_args			*args;
+	t_gen			*gen;
+	t_philos		*philos;
 }					t_all;
 int		check_args(int argc, char **argv, t_args *args);
 int		free_end(t_args *args, t_philos *philos, t_gen *gen, t_all *all);

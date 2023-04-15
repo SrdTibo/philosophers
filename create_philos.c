@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:56:09 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/15 11:59:34 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/15 13:46:00 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ int launch_threads(t_args *args, t_philos *philos, t_all *all)
 	int i;
 
 	i = 0;
+	// (void) args;  (void) all; (void) philos;
 	while (i < args->nmb_philos)
 	{
 		pthread_create(&philos[i].thread_philo, NULL, &activity, (void *)all);
-		i++;	
+		i++;
 	}
 	return (0);
 }
