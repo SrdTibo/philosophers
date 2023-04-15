@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:56:09 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/14 15:18:26 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/15 11:59:34 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ int	create_philos(t_args *args, t_philos *philos, t_gen *gen)
 	i = 0;
 	philos = malloc(sizeof(t_philos) * args->nmb_philos);
 	if (!philos)
-	{
-		free_end(args, philos, gen);
 		return (1);
-	}
 	pthread_mutex_init(&gen->write, NULL);
 	while (i < args->nmb_philos)
 	{
@@ -40,7 +37,15 @@ int	create_philos(t_args *args, t_philos *philos, t_gen *gen)
 	return(0);
 }
 
-int launch_threads(t_args *args, t_philos *philos)
+int launch_threads(t_args *args, t_philos *philos, t_all *all)
 {
+	int i;
+
+	i = 0;
+	while (i < args->nmb_philos)
+	{
+		pthread_create(&philos[i].thread_philo, NULL, &activity, (void *)all);
+		i++;	
+	}
 	return (0);
 }
