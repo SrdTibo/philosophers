@@ -6,31 +6,33 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/17 13:21:56 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/17 13:49:58 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*activity(void *all_void)
+void	*activity(void *data)
 {
-	(void)all_void;
-	t_all			*all;
-	all = (t_all *)all_void;
-	printf("d\n");
+	t_philos	*philos;
+
+	philos = (t_philos *)data;
+	printf("%d\n", philos->id);
 	return (0);
 }
 
-int launch_threads(t_args *args, t_all *all)
+int launch_threads(t_args *args, t_gen *gen, t_all *all)
 {
 	int i;
 
 	i = 0;
 	while (i < args->nmb_philos)
 	{
-		pthread_create(&all->philos[i].thread_philo, NULL, &activity, all);
+		if (i % 2 == 0)
+			ft_usleep(50, gen);
+		pthread_create(&all->philos[i].thread_philo, NULL, &activity, &all->philos[i]);
 		pthread_detach(all->philos[i].thread_philo);
-		i++;
+		i++;	
 	}
 	return (0);
 }

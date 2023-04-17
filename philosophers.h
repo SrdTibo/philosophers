@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/17 13:13:04 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/17 13:44:21 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void	initialising_time(t_gen *gen);
 void	ft_usleep(long int time_in_ms, t_gen *gen);
 void	is_eating(int x, t_gen *gen, t_args *args);
 void	is_sleeping(int x, t_gen *gen, t_args *args);
-int		launch_threads(t_args *args, t_all *all);
+int		launch_threads(t_args *args, t_gen *gen, t_all *all);
 void	is_dead(int x, t_gen *gen);
 #endif

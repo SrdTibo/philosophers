@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:21:43 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/17 13:13:24 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/17 13:44:05 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	launch(t_args *args, t_gen *gen, t_all *all)
 {
 	initialising_time(gen);
 	printf("%dms initialising\n", get_chrono(gen));
-	if (launch_threads(args, all) == 1)
+	if (launch_threads(args, gen, all) == 1)
 		return (1);
 	return (0);
 }
