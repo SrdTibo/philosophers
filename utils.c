@@ -6,15 +6,15 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:32:53 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/15 11:11:05 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/17 12:56:46 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int free_end(t_args *args, t_philos *philos, t_gen *gen, t_all *all)
+int free_end(t_args *args, t_gen *gen, t_all *all)
 {
-	free(philos);
+	free(all->philos);
 	free(args);
 	free(gen);
 	free(all);
