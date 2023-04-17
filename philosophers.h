@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/17 13:44:21 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/17 14:59:57 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ typedef struct s_args
 typedef struct s_gen
 {
 	pthread_mutex_t    	write;
-	long int			begin;
-	struct timeval		tv;
 }					t_gen;
 typedef struct s_philos
 {
@@ -38,8 +36,10 @@ typedef struct s_philos
 	int					nb_eat;
 	int 				begin;
 	int					last_eat;
+	long int			begin_all;
 	pthread_mutex_t    	f_c;
 	pthread_mutex_t    	*f_l;
+	pthread_mutex_t		*ptr_write;
 	pthread_t			thread_philo;
 }					t_philos;
 typedef struct s_all
@@ -52,12 +52,12 @@ int		check_args(int argc, char **argv, t_args *args);
 int		free_end(t_args *args, t_gen *gen, t_all *all);
 int		create_philos(t_args *args, t_gen *gen, t_all *all);
 int		ft_atoi(const char *thestring);
-void	is_thinking(int x, t_gen *gen);
-int		get_chrono(t_gen *gen);
-void	initialising_time(t_gen *gen);
-void	ft_usleep(long int time_in_ms, t_gen *gen);
-void	is_eating(int x, t_gen *gen, t_args *args);
-void	is_sleeping(int x, t_gen *gen, t_args *args);
-int		launch_threads(t_args *args, t_gen *gen, t_all *all);
-void	is_dead(int x, t_gen *gen);
+int			get_chrono(long int begin_all);
+long int	initialising_time(void);
+void	ft_usleep(long int time_in_ms, long int begin_all);
+void    is_eating(int x, pthread_mutex_t write, long int begin_all);
+void	is_thinking(int x, pthread_mutex_t write, long int begin_all);
+void	is_sleeping(int x, pthread_mutex_t write, long int begin_all);
+int		launch_threads(t_args *args, t_all *all);
+void	is_dead(int x, pthread_mutex_t write, long int begin_all);
 #endif
