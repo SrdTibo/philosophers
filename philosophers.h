@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/17 14:59:57 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/18 13:29:02 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_philos
 	int 				begin;
 	int					last_eat;
 	long int			begin_all;
+	long int			log_eat;
+	t_args				*args;
 	pthread_mutex_t    	f_c;
 	pthread_mutex_t    	*f_l;
 	pthread_mutex_t		*ptr_write;
@@ -60,4 +62,5 @@ void	is_thinking(int x, pthread_mutex_t write, long int begin_all);
 void	is_sleeping(int x, pthread_mutex_t write, long int begin_all);
 int		launch_threads(t_args *args, t_all *all);
 void	is_dead(int x, pthread_mutex_t write, long int begin_all);
+void	take_fork(int x, pthread_mutex_t write, long int begin_all);
 #endif
