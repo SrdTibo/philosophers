@@ -1,6 +1,6 @@
 NAME = philosophers
 
-src = check_args.c main.c utils.c create_philos.c action_write.c time.c activity.c
+src = check_args.c main.c utils.c create_philos.c action_write.c time.c activity.c end_conditions.c
 
 obj = $(src:.c=.o)
 

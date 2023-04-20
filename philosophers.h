@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:07:27 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/18 13:29:02 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/20 13:53:21 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ typedef struct s_args
 	int 				tte;
 	int 				tts;
 	int 				nmb_of_eat;
+	int					stop;
 }					t_args;
 typedef struct s_gen
 {
+
 	pthread_mutex_t    	write;
+	pthread_t			thread_gen;
 }					t_gen;
 typedef struct s_philos
 {
@@ -39,10 +42,12 @@ typedef struct s_philos
 	long int			begin_all;
 	long int			log_eat;
 	t_args				*args;
+	pthread_mutex_t		dead;
 	pthread_mutex_t    	f_c;
 	pthread_mutex_t    	*f_l;
 	pthread_mutex_t		*ptr_write;
 	pthread_t			thread_philo;
+	pthread_t			thread_dead;
 }					t_philos;
 typedef struct s_all
 {
@@ -60,7 +65,9 @@ void	ft_usleep(long int time_in_ms, long int begin_all);
 void    is_eating(int x, pthread_mutex_t write, long int begin_all);
 void	is_thinking(int x, pthread_mutex_t write, long int begin_all);
 void	is_sleeping(int x, pthread_mutex_t write, long int begin_all);
-int		launch_threads(t_args *args, t_all *all);
+int		launch_threads(t_args *args, t_gen *gen, t_all *all);
 void	is_dead(int x, pthread_mutex_t write, long int begin_all);
+void	*full_eat(void *all_void);
+void	*dead(void *data);
 void	take_fork(int x, pthread_mutex_t write, long int begin_all);
 #endif
