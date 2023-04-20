@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/20 13:57:27 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/20 14:31:08 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	*threads(void *data)
 		activity(philos);
 		pthread_detach(philos->thread_dead);
 	}
-	
 	return (0);
 }
 
@@ -80,6 +79,6 @@ int launch_threads(t_args *args, t_gen *gen, t_all *all)
 			return (-1);
 		pthread_detach(gen->thread_gen);
 	}
-	while (all->philos->args->stop == 0);
+	while (all->args->stop == 0);
 	return (0);
 }
