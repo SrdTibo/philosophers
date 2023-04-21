@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:02:23 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/20 14:08:10 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/21 14:43:40 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	if_he_died(t_philos *philos)
 	{
 		is_dead(philos->id, *philos->ptr_write, philos->begin_all);
 		philos->args->stop = 1;
-		return (-1);
+		return (1);
 	}
 	return (0);
 }
@@ -58,7 +58,7 @@ void	*dead(void *data)
 	t_philos	*philos;
 
 	philos = (t_philos *)data;
-	if (philos->args->stop != 1)
+	if (philos->args->stop == 0)
 	{
 		ft_usleep(philos->args->ttd, philos->begin_all);
 		if_he_died(philos);
