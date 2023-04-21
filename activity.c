@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/21 13:02:03 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/04/21 15:04:00 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ int launch_threads(t_args *args, t_gen *gen, t_all *all)
 			return (-1);
 		pthread_detach(gen->thread_gen);
 	}
-	while (all->args->stop == 0);
+	while (all->philos->args->stop == 0);
 	return (0);
 }
