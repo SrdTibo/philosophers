@@ -6,11 +6,18 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/21 15:04:00 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/03 13:15:56 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	*solo_philo(t_philos *philos)
+{
+	ft_usleep(philos->args->tte, philos->begin_all);
+	pthread_mutex_unlock(&(philos->f_c));
+	return (0);
+}
 
 void	*activity(void *data)
 {
@@ -19,6 +26,8 @@ void	*activity(void *data)
 	philos = (t_philos *)data;
 	pthread_mutex_lock(&philos->f_c);
 	take_fork(philos->id, *philos->ptr_write, philos->begin_all);
+	if (philos->args->nmb_philos == 1)
+		return (solo_philo(philos));
 	pthread_mutex_lock(philos->f_l);
 	take_fork(philos->id, *philos->ptr_write, philos->begin_all);
 	is_eating(philos->id, *philos->ptr_write, philos->begin_all);
@@ -26,7 +35,7 @@ void	*activity(void *data)
 	philos->log_eat = get_chrono(philos->begin_all);
 	if (philos->nb_eat != 2147483647)
 		philos->nb_eat += 1;
-	printf("\033[0;31mPhilo %d eated %d times\033[0m\n", philos->id, philos->nb_eat);
+	// printf("\033[0;31m%dms Philo %d eated %d times\033[0m\n",get_chrono(philos->begin_all), philos->id, philos->nb_eat);
 	pthread_mutex_unlock(&philos->f_c);
 	pthread_mutex_unlock(philos->f_l);
 	is_sleeping(philos->id, *philos->ptr_write, philos->begin_all);
@@ -83,3 +92,19 @@ int launch_threads(t_args *args, t_gen *gen, t_all *all)
 	while (all->philos->args->stop == 0);
 	return (0);
 }
+
+// 	test 							resultat attendu
+//
+// ./philosophers 1 200 200 200 	philo 1 ne prend qu'une fourchette et meurt au bout de 200 ms - s'arrete a 220ms
+// ./philosophers 2 800 200 200 	personne ne meurt - OK
+// ./philosophers 5 800 200 200 	personne ne meurt - OK
+// ./philosophers 5 800 200 200 7 	la simulation s'arrete quand chaque philo a mange 7 fois - s'arrete au bon moment?
+// ./philosophers 4 410 200 200 	personne ne meurt - OK
+// ./philosophers 4 310 200 200 	un philo meurt - personne meurs
+// ./philosophers 4 500 200 1.2 	argument invalide - OK
+// ./philosophers 4 0 200 200 	argument invalide - OK
+// ./philosophers 4 -500 200 200 	argument invalide - OK
+// ./philosophers 4 500 200 2147483647 	un philo meurt au bout de 500 ms - BUG
+// ./philosophers 4 2147483647 200 200 	personne ne meurt - OK
+// ./philosophers 4 214748364732 200 200 	argument invalide - OK
+// ./philosophers 4 200 210 200 	un philo meurt, il faut afficher la mort avant 210 ms - affiche un message de trop
