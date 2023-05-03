@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:15:50 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/18 13:20:57 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/03 11:31:16 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int check_converted(t_args *args)
 {
 	if (args->nmb_philos <= 0 || args->ttd <= 0 || args->tte <= 0)
 		return (1);
-	if (args->tts <= 0 || args->nmb_of_eat)
+	if (args->tts <= 0)
 		return (1);
 	return (0);
 }
@@ -61,6 +61,7 @@ int	check_args(int argc, char **argv, t_args *args)
 		return (1);
 	if (argc == 5)
 		args->nmb_of_eat = -1;
-	convert_args(argv, args);
+	if (convert_args(argv, args) == 1)
+		return (1);
 	return (0);
 }

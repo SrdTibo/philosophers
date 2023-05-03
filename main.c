@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:21:43 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/20 14:08:25 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/03 11:33:30 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ int main(int argc, char **argv)
 	args = malloc(sizeof(t_args));
 	gen = malloc(sizeof(t_gen));
 	all = malloc(sizeof(t_all));
-	if (!args || !gen)
+	if (!args || !gen || !all)
 		return(free_end(args, gen, all));
 	if (check_args(argc, argv, args) == 1)
 	{
 		printf("\033[0;31mARGS ERROR!\033[0m\n");
-		return(free_end(args, gen, all));
+		free(args);
+		free(gen);
+		free(all);
+		return(1);
 	}
 	else
 		printf("\033[0;32mARGS OK!\033[0m\n");
