@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:56:09 by tserdet           #+#    #+#             */
-/*   Updated: 2023/04/18 15:02:13 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/04 11:04:28 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	all_create(int i, t_gen *gen, t_all *all)
 {
 	all->philos[i].id = i;
 	all->philos[i].nb_eat = 0;
-	all->philos[i].last_eat = 0;
+	all->philos[i].log_eat = 0;
 	all->philos[i].ptr_write = &gen->write;
 }
 

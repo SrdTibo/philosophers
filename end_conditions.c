@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:02:23 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/04 10:38:53 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/04 11:28:36 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,24 @@ void	*full_eat(void *data)
 			i++;
 		}
 		if (eat == 1)
+		{	
+			all->philos->args->stop = 1;
+			pthread_mutex_lock(all->philos->ptr_write);
 			break ;
+		}
 		eat = 1;
 	}
-	all->philos->args->stop = 1;
 	return (NULL);
 }
 
 int	if_he_died(t_philos *philos)
 {
 	if (get_chrono(philos->begin_all) - philos->log_eat >= 
-		philos->args->ttd)
+		philos->args->ttd - 10)
 	{
 		pthread_mutex_lock(philos->ptr_write);
 		printf("%dms %d died\n", get_chrono(philos->begin_all), philos->id);
+		pthread_mutex_destroy((philos->ptr_write));
 		philos->args->stop = 1;
 		return (1);
 	}
@@ -59,9 +63,9 @@ void	*dead(void *data)
 	t_philos	*philos;
 
 	philos = (t_philos *)data;
-	if (philos->args->stop == 0)
+	while (philos->args->stop == 0)
 	{
-		ft_usleep(philos->args->ttd , philos->begin_all);
+		// ft_usleep(philos->args->ttd , philos->begin_all);
 		if_he_died(philos);
 	}
 	return (NULL);
