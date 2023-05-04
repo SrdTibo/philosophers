@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/03 13:15:56 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/04 10:41:23 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*activity(void *data)
 	philos->log_eat = get_chrono(philos->begin_all);
 	if (philos->nb_eat != 2147483647)
 		philos->nb_eat += 1;
-	// printf("\033[0;31m%dms Philo %d eated %d times\033[0m\n",get_chrono(philos->begin_all), philos->id, philos->nb_eat);
+	printf("\033[0;31m%dms Philo %d eated %d times\033[0m\n",get_chrono(philos->begin_all), philos->id, philos->nb_eat);
 	pthread_mutex_unlock(&philos->f_c);
 	pthread_mutex_unlock(philos->f_l);
 	is_sleeping(philos->id, *philos->ptr_write, philos->begin_all);

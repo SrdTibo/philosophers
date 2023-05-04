@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:02:23 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/03 12:37:29 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/04 10:38:53 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ int	if_he_died(t_philos *philos)
 	if (get_chrono(philos->begin_all) - philos->log_eat >= 
 		philos->args->ttd)
 	{
+		pthread_mutex_lock(philos->ptr_write);
+		printf("%dms %d died\n", get_chrono(philos->begin_all), philos->id);
 		philos->args->stop = 1;
-		is_dead(philos->id, *philos->ptr_write, philos->begin_all);
 		return (1);
 	}
 	return (0);
@@ -60,7 +61,7 @@ void	*dead(void *data)
 	philos = (t_philos *)data;
 	if (philos->args->stop == 0)
 	{
-		ft_usleep(philos->args->ttd, philos->begin_all);
+		ft_usleep(philos->args->ttd , philos->begin_all);
 		if_he_died(philos);
 	}
 	return (NULL);
