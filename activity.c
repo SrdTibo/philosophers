@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/04 11:29:12 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/04 11:54:08 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*activity(void *data)
 	is_eating(philos->id, *philos->ptr_write, philos->begin_all);
 	ft_usleep(philos->args->tte, philos->begin_all);
 	philos->log_eat = get_chrono(philos->begin_all);
-	printf("\033[0;31m%dms Philo %d eated at %ld \033[0m\n",get_chrono(philos->begin_all), philos->id, philos->log_eat);
+	// printf("\033[0;31m%dms Philo %d eated at %ld \033[0m\n",get_chrono(philos->begin_all), philos->id, philos->log_eat);
 	if (philos->nb_eat != 2147483647)
 		philos->nb_eat += 1;
 	printf("\033[0;31m%dms Philo %d eated %d times\033[0m\n",get_chrono(philos->begin_all), philos->id, philos->nb_eat);
@@ -96,16 +96,16 @@ int launch_threads(t_args *args, t_gen *gen, t_all *all)
 
 // 	test 							resultat attendu
 //
-// ./philosophers 1 200 200 200 	philo 1 ne prend qu'une fourchette et meurt au bout de 200 ms - OK
-// ./philosophers 2 800 200 200 	personne ne meurt - OK
-// ./philosophers 5 800 200 200 	personne ne meurt - OK
-// ./philosophers 5 800 200 200 7 	la simulation s'arrete quand chaque philo a mange 7 fois - 1 message de trop
-// ./philosophers 4 410 200 200 	personne ne meurt - 1 meurs
-// ./philosophers 4 310 200 200 	un philo meurt - OK
-// ./philosophers 4 500 200 1.2 	argument invalide - OK
-// ./philosophers 4 0 200 200 	argument invalide - OK
-// ./philosophers 4 -500 200 200 	argument invalide - OK
-// ./philosophers 4 500 200 2147483647 	un philo meurt au bout de 500 ms - meurs trop tard
-// ./philosophers 4 2147483647 200 200 	personne ne meurt - OK
-// ./philosophers 4 214748364732 200 200 	argument invalide - OK
-// ./philosophers 4 200 210 200 	un philo meurt, il faut afficher la mort avant 210 ms - affiche un message de trop
+// ./philo 1 200 200 200 	philo 1 ne prend qu'une fourchette et meurt au bout de 200 ms - OK
+// ./philo 2 800 200 200 	personne ne meurt - OK
+// ./philo 5 800 200 200 	personne ne meurt - OK
+// ./philo 5 800 200 200 7 	la simulation s'arrete quand chaque philo a mange 7 fois - 1 message de trop
+// ./philo 4 410 200 200 	personne ne meurt - 1 meurs
+// ./philo 4 310 200 200 	un philo meurt - OK
+// ./philo 4 500 200 1.2 	argument invalide - OK
+// ./philo 4 0 200 200 	argument invalide - OK
+// ./philo 4 -500 200 200 	argument invalide - OK
+// ./philo 4 500 200 2147483647 	un philo meurt au bout de 500 ms - meurs trop tard
+// ./philo 4 2147483647 200 200 	personne ne meurt - OK
+// ./philo 4 214748364732 200 200 	argument invalide - OK
+// ./philo 4 200 210 200 	un philo meurt, il faut afficher la mort avant 210 ms - affiche un message de trop
