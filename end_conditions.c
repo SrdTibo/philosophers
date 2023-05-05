@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:02:23 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/05 11:26:48 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/05 13:00:47 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ void	*full_eat(void *data)
 
 int	if_he_died(t_philos *philos)
 {
-	if (get_chrono(philos->begin_all) - philos->log_eat >= 
+
+	if (get_chrono(philos->begin_all) - philos->log_eat >=
 		philos->args->ttd - 10)
 	{
 		printf("Philo n.%d : %d - %ld = %ld >= %d ?\n", philos->id, get_chrono(philos->begin_all), philos->log_eat, get_chrono(philos->begin_all) - philos->log_eat, philos->args->ttd);
+		philos->args->stop = 1;
 		pthread_mutex_lock(philos->ptr_write);
 		printf("%dms %d died\n", get_chrono(philos->begin_all), philos->id);
-		philos->args->stop = 1;
 		return (1);
 	}
 	return (0);
