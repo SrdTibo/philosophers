@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/04 11:54:08 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/05 11:05:23 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ void	*activity(void *data)
 	is_eating(philos->id, *philos->ptr_write, philos->begin_all);
 	ft_usleep(philos->args->tte, philos->begin_all);
 	philos->log_eat = get_chrono(philos->begin_all);
-	// printf("\033[0;31m%dms Philo %d eated at %ld \033[0m\n",get_chrono(philos->begin_all), philos->id, philos->log_eat);
 	if (philos->nb_eat != 2147483647)
 		philos->nb_eat += 1;
-	printf("\033[0;31m%dms Philo %d eated %d times\033[0m\n",get_chrono(philos->begin_all), philos->id, philos->nb_eat);
+	// printf("\033[0;31m%dms Philo %d eated %d times (%ldms)\033[0m\n",get_chrono(philos->begin_all), philos->id, philos->nb_eat, philos->log_eat);
 	pthread_mutex_unlock(&philos->f_c);
 	pthread_mutex_unlock(philos->f_l);
 	is_sleeping(philos->id, *philos->ptr_write, philos->begin_all);
@@ -50,6 +49,7 @@ void	*threads(void *data)
 	t_philos	*philos;
 
 	philos = (t_philos *)data;
+	philos->begin_all = initialising_time();
 	if (philos->id % 2 == 0)
 		ft_usleep(philos->args->tte / 10, philos->begin_all);
 	while (philos->args->stop == 0)
@@ -58,7 +58,7 @@ void	*threads(void *data)
 		{
 			printf("Error when creating the thread\n");
 			return (NULL);
-		}
+		}	
 		activity(philos);
 		pthread_detach(philos->thread_dead);
 	}
@@ -68,14 +68,14 @@ void	*threads(void *data)
 int launch_threads(t_args *args, t_gen *gen, t_all *all)
 {
 	int i;
-	long int	time;
+	// long int	time;
 
 	i = 0;
-	time = initialising_time();
+	// time = initialising_time();
 	pthread_mutex_init(&gen->write, NULL);
 	while (i < args->nmb_philos)
 	{
-		all->philos[i].begin_all = time;
+		// all->philos[i].begin_all = time;
 		all->philos[i].args = args;
 		if (pthread_create(&all->philos[i].thread_philo, NULL,
 				&threads, &all->philos[i]) != 0)
@@ -99,7 +99,7 @@ int launch_threads(t_args *args, t_gen *gen, t_all *all)
 // ./philo 1 200 200 200 	philo 1 ne prend qu'une fourchette et meurt au bout de 200 ms - OK
 // ./philo 2 800 200 200 	personne ne meurt - OK
 // ./philo 5 800 200 200 	personne ne meurt - OK
-// ./philo 5 800 200 200 7 	la simulation s'arrete quand chaque philo a mange 7 fois - 1 message de trop
+// ./philo 5 800 200 200 7 	la simulation s'arrete quand chaque philo a mange 7 fois - OK
 // ./philo 4 410 200 200 	personne ne meurt - 1 meurs
 // ./philo 4 310 200 200 	un philo meurt - OK
 // ./philo 4 500 200 1.2 	argument invalide - OK
@@ -108,4 +108,4 @@ int launch_threads(t_args *args, t_gen *gen, t_all *all)
 // ./philo 4 500 200 2147483647 	un philo meurt au bout de 500 ms - meurs trop tard
 // ./philo 4 2147483647 200 200 	personne ne meurt - OK
 // ./philo 4 214748364732 200 200 	argument invalide - OK
-// ./philo 4 200 210 200 	un philo meurt, il faut afficher la mort avant 210 ms - affiche un message de trop
+// ./philo 4 200 210 200 	un philo meurt, il faut afficher la mort avant 210 ms - OK

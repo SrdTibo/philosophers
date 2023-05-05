@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:02:23 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/04 11:41:44 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/05 11:11:21 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	*full_eat(void *data)
 int	if_he_died(t_philos *philos)
 {
 	if (get_chrono(philos->begin_all) - philos->log_eat >= 
-		philos->args->ttd - 10)
+		philos->args->ttd)
 	{
+		printf("Philo n.%d : %d - %ld = %ld >= %d ?\n", philos->id, get_chrono(philos->begin_all), philos->log_eat, get_chrono(philos->begin_all) - philos->log_eat, philos->args->ttd - 5);
 		pthread_mutex_lock(philos->ptr_write);
 		printf("%dms %d died\n", get_chrono(philos->begin_all), philos->id);
-		pthread_mutex_destroy((philos->ptr_write));
 		philos->args->stop = 1;
 		return (1);
 	}
@@ -65,7 +65,7 @@ void	*dead(void *data)
 	philos = (t_philos *)data;
 	while (philos->args->stop == 0)
 	{
-		ft_usleep(philos->args->ttd + 1 , philos->begin_all);
+		// ft_usleep(philos->args->ttd , philos->begin_all);
 		if_he_died(philos);
 	}
 	return (NULL);
