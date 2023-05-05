@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/05 11:05:23 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/05 11:18:34 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	*activity(void *data)
 	take_fork(philos->id, *philos->ptr_write, philos->begin_all);
 	is_eating(philos->id, *philos->ptr_write, philos->begin_all);
 	ft_usleep(philos->args->tte, philos->begin_all);
-	philos->log_eat = get_chrono(philos->begin_all);
 	if (philos->nb_eat != 2147483647)
 		philos->nb_eat += 1;
-	// printf("\033[0;31m%dms Philo %d eated %d times (%ldms)\033[0m\n",get_chrono(philos->begin_all), philos->id, philos->nb_eat, philos->log_eat);
+	philos->log_eat = get_chrono(philos->begin_all);
+	printf("\033[0;31m%dms Philo %d eated %d times (%ldms)\033[0m\n",get_chrono(philos->begin_all), philos->id, philos->nb_eat, philos->log_eat);
 	pthread_mutex_unlock(&philos->f_c);
 	pthread_mutex_unlock(philos->f_l);
 	is_sleeping(philos->id, *philos->ptr_write, philos->begin_all);
