@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:56:09 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/04 11:04:28 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/06 22:56:06 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	create_philos(t_args *args, t_gen *gen, t_all *all)
 		if (i == 0)
 			all->philos[i].f_l = &all->philos[args->nmb_philos].f_c;
 		else
-			all->philos[i].f_l = all->philos[i - 1].f_l;
+			all->philos[i].f_l = &all->philos[i - 1].f_c;
 		i++;
 	}
 	return(0);
