@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/06 19:26:51 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/06 20:51:06 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	*activity(void *data)
 
 	philos = (t_philos *)data;
 	pthread_mutex_lock(&philos->f_c);
-	
 	take_fork(philos->id, *philos->ptr_write, philos->begin_all);
 	if (philos->args->nmb_philos == 1)
 		return (solo_philo(philos));
@@ -36,7 +35,7 @@ void	*activity(void *data)
 	if (philos->nb_eat != 2147483647)
 		philos->nb_eat += 1;
 	ft_usleep(philos->args->tte, philos->begin_all);
-	//printf("\033[0;31m%dms Philo %d eated %d times (%ldms)\033[0m\n",get_chrono(philos->begin_all), philos->id  + 1, philos->nb_eat, philos->log_eat);
+	// printf("\033[0;31m%dms Philo %d eated %d times (%ldms)\033[0m\n",get_chrono(philos->begin_all), philos->id  + 1, philos->nb_eat, philos->log_eat);
 	pthread_mutex_unlock(&philos->f_c);
 	pthread_mutex_unlock(philos->f_l);
 	is_sleeping(philos->id, *philos->ptr_write, philos->begin_all);
@@ -50,9 +49,9 @@ void	*threads(void *data)
 	t_philos	*philos;
 
 	philos = (t_philos *)data;
-	philos->begin_all = initialising_time();
 	if (philos->id % 2 == 0)
 		ft_usleep(philos->args->tte / 10, philos->begin_all);
+	philos->begin_all = initialising_time();
 	while (philos->args->stop == 0)
 	{
 		if (pthread_create(&philos->thread_dead, NULL, &dead, (void *)philos) != 0)
@@ -98,8 +97,8 @@ int launch_threads(t_args *args, t_gen *gen, t_all *all)
 // 	test 							resultat attendu 												resultat obtenu
 //
 // ./philo 1 200 200 200 			philo 1 ne prend qu'une fourchette et meurt au bout de 200 ms -	OK
-// ./philo 2 800 200 200 			personne ne meurt - 											OK
-// ./philo 5 800 200 200 			personne ne meurt - 											OK
+// ./philo 2 800 200 200			personne ne meurt - 											OK
+// ./philo 5 800 200 200 		 	personne ne meurt - 											OK
 // ./philo 5 800 200 200 7 			la simulation s'arrete quand chaque philo a mange 7 fois - 		OK
 // ./philo 4 410 200 200 			personne ne meurt - 											1 meurs
 // ./philo 4 310 200 200 			un philo meurt - 												OK
