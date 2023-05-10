@@ -15,14 +15,14 @@
 int	launch(t_args *args, t_gen *gen, t_all *all)
 {
 	all->args = args;
-	all->gen  = gen;
+	all->gen = gen;
 	all->args->stop = 0;
 	if (launch_threads(args, gen, all) == 1)
 		return (1);
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_args		*args;
 	t_gen		*gen;
@@ -32,21 +32,21 @@ int main(int argc, char **argv)
 	gen = malloc(sizeof(t_gen));
 	all = malloc(sizeof(t_all));
 	if (!args || !gen || !all)
-		return(free_end(args, gen, all));
+		return (free_end(args, gen, all));
 	if (check_args(argc, argv, args) == 1)
 	{
 		printf("\033[0;31mARGS ERROR!\033[0m\n");
 		free(args);
 		free(gen);
 		free(all);
-		return(1);
+		return (1);
 	}
 	else
 		printf("\033[0;32mARGS OK!\033[0m\n");
 	if (create_philos(args, gen, all) == 1)
-		return(free_end(args, gen, all)); 
+		return (free_end(args, gen, all));
 	if (launch(args, gen, all) == 1)
-		return(free_end(args, gen, all));
+		return (free_end(args, gen, all));
 	free_end(args, gen, all);
 	return (0);
 }

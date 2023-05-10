@@ -12,7 +12,7 @@
 
 #include "philosophers.h"
 
-int only_int(int argc, char **argv)
+int	only_int(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -33,7 +33,7 @@ int only_int(int argc, char **argv)
 	return (0);
 }
 
-int check_converted(t_args *args)
+int	check_converted(t_args *args)
 {
 	if (args->nmb_philos <= 0 || args->ttd <= 0 || args->tte <= 0)
 		return (1);
@@ -42,7 +42,7 @@ int check_converted(t_args *args)
 	return (0);
 }
 
-int convert_args(char **argv, t_args *args)
+int	convert_args(char **argv, t_args *args)
 {
 	args->nmb_philos = atoi(argv[1]);
 	args->ttd = atoi(argv[2]);
@@ -54,7 +54,7 @@ int convert_args(char **argv, t_args *args)
 }
 
 int	check_args(int argc, char **argv, t_args *args)
-{	
+{
 	if (only_int(argc, argv) == 1)
 		return (1);
 	if (argc < 5 || argc > 6)

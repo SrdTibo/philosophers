@@ -28,7 +28,7 @@ void	*activity(void *data)
 	take_fork(philos->id, *philos->ptr_write, philos->begin_all);
 	if (philos->args->nmb_philos == 1)
 		return (solo_philo(philos));
-	pthread_mutex_lock(philos->f_l);	
+	pthread_mutex_lock(philos->f_l);
 	take_fork(philos->id, *philos->ptr_write, philos->begin_all);
 	is_eating(philos->id, *philos->ptr_write, philos->begin_all);
 	philos->log_eat = get_chrono(philos->begin_all);
@@ -40,7 +40,7 @@ void	*activity(void *data)
 	is_sleeping(philos->id, *philos->ptr_write, philos->begin_all);
 	ft_usleep(philos->args->tts, philos->begin_all);
 	is_thinking(philos->id, *philos->ptr_write, philos->begin_all);
-	return 0;
+	return (0);
 }
 
 void	*threads(void *data)
@@ -53,20 +53,20 @@ void	*threads(void *data)
 	philos->begin_all = initialising_time();
 	while (philos->args->stop == 0)
 	{
-		if (pthread_create(&philos->thread_dead, NULL, &dead, (void *)philos) != 0)
+		if (pthread_create(&philos->thread_dead, NULL, &dead, philos) != 0)
 		{
 			printf("Error when creating the thread\n");
 			return (NULL);
-		}	
+		}
 		activity(philos);
 		pthread_detach(philos->thread_dead);
 	}
 	return (0);
 }
 
-int launch_threads(t_args *args, t_gen *gen, t_all *all)
+int	launch_threads(t_args *args, t_gen *gen, t_all *all)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	pthread_mutex_init(&gen->write, NULL);
@@ -86,6 +86,7 @@ int launch_threads(t_args *args, t_gen *gen, t_all *all)
 			return (-1);
 		pthread_detach(gen->thread_gen);
 	}
-	while (all->philos->args->stop == 0);
+	while (all->philos->args->stop == 0)
+		;
 	return (0);
 }

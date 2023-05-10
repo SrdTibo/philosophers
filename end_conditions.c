@@ -14,9 +14,9 @@
 
 void	*full_eat(void *data)
 {
-	int	i;
-	int				eat;
-	t_all			*all;
+	int		i;
+	int		eat;
+	t_all	*all;
 
 	i = 0;
 	eat = 1;
@@ -46,8 +46,8 @@ void	*full_eat(void *data)
 
 int	if_he_died(t_philos *philos)
 {
-	if (get_chrono(philos->begin_all) - philos->log_eat >=
-		philos->args->ttd	)
+	if (get_chrono(philos->begin_all) - philos->log_eat
+		>= philos->args->ttd)
 	{
 		philos->args->stop = 1;
 		pthread_mutex_lock(philos->ptr_write);
@@ -64,7 +64,6 @@ void	*dead(void *data)
 	philos = (t_philos *)data;
 	while (philos->args->stop == 0)
 	{
-		// ft_usleep(philos->args->ttd , philos->begin_all);
 		if_he_died(philos);
 	}
 	return (NULL);

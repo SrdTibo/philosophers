@@ -12,7 +12,7 @@
 
 #include "philosophers.h"
 
-int free_end(t_args *args, t_gen *gen, t_all *all)
+int	free_end(t_args *args, t_gen *gen, t_all *all)
 {
 	int	i;
 

@@ -23,7 +23,7 @@ void	all_create(int i, t_gen *gen, t_all *all)
 int	create_philos(t_args *args, t_gen *gen, t_all *all)
 {
 	int			i;
-	
+
 	i = 0;
 	all->philos = malloc(sizeof(t_philos) * args->nmb_philos);
 	all->philos->args = malloc(sizeof(t_args) * args->nmb_philos);
@@ -40,5 +40,5 @@ int	create_philos(t_args *args, t_gen *gen, t_all *all)
 			all->philos[i].f_l = &all->philos[i - 1].f_c;
 		i++;
 	}
-	return(0);
+	return (0);
 }
