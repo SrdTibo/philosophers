@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:21:43 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/03 11:33:30 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/15 17:14:58 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ int	main(int argc, char **argv)
 	if (check_args(argc, argv, args) == 1)
 	{
 		printf("\033[0;31mARGS ERROR!\033[0m\n");
-		free(args);
-		free(gen);
-		free(all);
+		free_end(args, gen, all);
 		return (1);
 	}
 	else

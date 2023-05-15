@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/06 23:13:55 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/15 17:12:20 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ int	launch_threads(t_args *args, t_gen *gen, t_all *all)
 	int	i;
 
 	i = 0;
-	pthread_mutex_init(&gen->write, NULL);
+	if (pthread_mutex_init(&gen->write, NULL) != 0)
+		return (1);
 	while (i < args->nmb_philos)
 	{
 		all->philos[i].args = args;
