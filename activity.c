@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/15 17:12:20 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/15 17:38:29 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	*threads(void *data)
 	philos = (t_philos *)data;
 	if (philos->id % 2 == 0)
 		ft_usleep(philos->args->tte / 10, philos->begin_all);
-	philos->begin_all = initialising_time();
 	while (philos->args->stop == 0)
 	{
 		if (pthread_create(&philos->thread_dead, NULL, &dead, philos) != 0)
@@ -69,6 +68,7 @@ int	launch_threads(t_args *args, t_gen *gen, t_all *all)
 	int	i;
 
 	i = 0;
+	
 	if (pthread_mutex_init(&gen->write, NULL) != 0)
 		return (1);
 	while (i < args->nmb_philos)
@@ -84,7 +84,7 @@ int	launch_threads(t_args *args, t_gen *gen, t_all *all)
 	{
 		if (pthread_create(&gen->thread_gen, NULL, &full_eat,
 				(void *)all) != 0)
-			return (-1);
+			return (1);
 		pthread_detach(gen->thread_gen);
 	}
 	while (all->philos->args->stop == 0)
