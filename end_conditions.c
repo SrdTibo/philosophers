@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:02:23 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/06 23:13:39 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/15 15:07:53 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,10 @@ void	*full_eat(void *data)
 			i++;
 		}
 		if (eat == 1)
-		{
-			pthread_mutex_lock(all->philos->ptr_write);
-			all->philos->args->stop = 1;
 			break ;
-		}
 		eat = 1;
 	}
+	all->philos->args->stop = 1;
 	return (NULL);
 }
 
