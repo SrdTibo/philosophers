@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:15:50 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/04 11:10:10 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:38:28 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	convert_args(char **argv, t_args *args)
 
 int	check_args(int argc, char **argv, t_args *args)
 {
+	if (argc == 1)
+		return (1);
 	if (only_int(argc, argv) == 1)
 		return (1);
 	if (argc < 5 || argc > 6)
