@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:32:53 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/17 18:54:47 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/17 19:15:43 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	free_end(t_args *args, t_gen *gen, t_all *all)
 		i++;
 	}
 	pthread_mutex_destroy(&gen->write);
-	pthread_mutex_destroy(all->philos->ptr_write);
 	free(all->philos);
 	free(args);
 	free(gen);
