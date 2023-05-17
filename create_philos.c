@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 10:56:09 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/17 17:36:03 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/17 18:09:24 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,7 @@ int	create_philos(t_args *args, t_gen *gen, t_all *all)
 	all->philos = malloc(sizeof(t_philos) * args->nmb_philos);
 	all->philos->args = malloc(sizeof(t_args) * args->nmb_philos);
 	if (!all->philos || !all->philos->args)
-	{
-		free(all->philos);
-		free(all->philos->args);
 		return (1);
-	}	
 	while (i < args->nmb_philos)
 	{
 		all_create(i, gen, all);
