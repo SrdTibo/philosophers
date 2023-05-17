@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:47:02 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/17 14:34:27 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:16:54 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*solo_philo(t_philos *philos)
 {
-	ft_usleep(philos->args->tte, philos->begin_all);
+	ft_usleep(philos->args->ttd * 2, philos->begin_all);
 	pthread_mutex_unlock(&(philos->f_c));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:02:23 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/15 15:07:53 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/17 17:20:43 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	if_he_died(t_philos *philos)
 		philos->args->stop = 1;
 		pthread_mutex_lock(philos->ptr_write);
 		printf("%dms %d died\n", get_chrono(philos->begin_all), philos->id + 1);
+		pthread_mutex_destroy(philos->ptr_write);
 		return (1);
 	}
 	return (0);
