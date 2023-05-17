@@ -6,7 +6,7 @@
 /*   By: tserdet <tserdet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:02:23 by tserdet           #+#    #+#             */
-/*   Updated: 2023/05/17 18:55:48 by tserdet          ###   ########.fr       */
+/*   Updated: 2023/05/17 18:57:26 by tserdet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	*dead(void *data)
 	philos = (t_philos *)data;
 	while (philos->args->stop == 0)
 	{
-		if_he_died(philos)
+		if_he_died(philos);
 	}
 	return (NULL);
 }
